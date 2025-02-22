@@ -50,74 +50,47 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Home",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Ideas",
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
+          title: "Projects",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Events",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Hackathons",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Webinar",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Workshops",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
+      title: "Community",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Global",
           url: "#",
         },
         {
@@ -125,19 +98,25 @@ const data = {
           url: "#",
         },
         {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
+          title: "DM",
           url: "#",
         },
       ],
     },
+    {
+      title: "Create",
+      url: "#",
+      icon: BookOpen,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: BookOpen,
+    }
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Mentorship",
       url: "#",
       icon: Frame,
     },
