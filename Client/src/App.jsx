@@ -9,12 +9,14 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import LandingPage from "./pages/LandingPage.jsx";
 
 function App() {
   return (
     <header>
       <SignedOut>
-        <SignInButton />
+        {/* <SignInButton /> */}
+        <LandingPage />
       </SignedOut>
 
       <SignedIn>

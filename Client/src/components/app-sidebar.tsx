@@ -32,20 +32,15 @@ const data = {
       // plan: "Enterprise",
     },
     {
-      name: "Switch to mentor.",
+      name: "Admin Panel",
       logo: AudioWaveform,
-      plan: "mentor account",
-    },
-    {
-      name: "Switch to student.",
-      logo: Command,
       plan: "mentor account",
     },
   ],
   navMain: [
     {
       title: "Home",
-      url: "/",
+      url: "/home",
       icon: House,
       isActive: true,
       items: [

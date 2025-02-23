@@ -19,6 +19,7 @@ function EventRoutes() {
         <div className='grid grid-cols-3 gap-4'>
           {/* Render components based on the current route */}
           <Routes>
+            <Route index element={<Hackathons />} />
             <Route path='/hackathons' element={<Hackathons />} />
             <Route path='/webinars' element={<Webinar />} />
             <Route path='/workshops' element={<Workshop />} />
