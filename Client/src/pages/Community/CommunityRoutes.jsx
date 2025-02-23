@@ -1,12 +1,16 @@
 import React from 'react'
+// import GlobalChat from './GlobalChat'
+import IssueChat from './IssueChat'
+import Community from './Community'
+import { Link, Route, Routes } from 'react-router-dom'; 
 
 function CommunityRoutes() {
   return (
     <>
       {/* Navigation Links */}
-      <div className='flex gap-5 p-5 ml-12 text-lg'>
-        <Link to='/community/global'>Hackathons</Link>
-        <Link to='/community/webinars'>Webinars</Link>
+      <div className='flex flex-wrap items-center gap-x-6 px-6 py-4 rounded-xl ml-12 text-lg font-medium w-full text-white bg-neutral-900 fixed'>
+        <Link to='/community/global'>Global</Link>
+        <Link to='/community/issues'>Issues</Link>
       </div>
 
       {/* Main Content Section */}
@@ -14,11 +18,9 @@ function CommunityRoutes() {
         <div className='grid grid-cols-3 gap-4'>
           {/* Render components based on the current route */}
           <Routes>
-            <Route index element={<Hackathons />} />
-            <Route path='/hackathons' element={<Hackathons />} />
-            <Route path='/hackathons/show' element={<showHackathon />} />
-            <Route path='/webinars' element={<Webinar />} />
-            <Route path='/workshops' element={<Workshop />} />
+            <Route index element={<Community />} />
+            <Route path='/global' element={<Community />} />
+            <Route path='/issues' element={<IssueChat />} />
           </Routes>
         </div>
       </div>
