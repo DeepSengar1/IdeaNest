@@ -7,12 +7,12 @@ router.post("/", async (req, res) => {
   const { clerkId, name, email, role } = req.body;
   try {
     const user = await User.findOneAndUpdate(
-      { clerkId: userData.clerkId },
+      { clerkId: clerkId },
       {
-        name: userData.name,
-        email: userData.email,
-        role: userData.role,
-        avatarUrl: userData.avatarUrl,
+        name: name,
+        email: email,
+        role: role,
+        // avatarUrl: avatarUrl,
       },
       { new: true, upsert: true }
     );
