@@ -48,12 +48,16 @@ const data = {
       url: "/",
       icon: House,
       isActive: true,
-      // items: [
-      //   {
-      //     title: "Ideas",
-      //     url: "#",
-      //   },
-      // ],
+      items: [
+        {
+          title: "Ideas",
+          url: "#",
+        },
+        {
+          title: "Projects",
+          url: "#",
+        },
+      ],
     },
     {
       title: "Events",
