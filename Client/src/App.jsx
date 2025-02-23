@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import { AppSidebar } from "@/components/app-sidebar";
 import Page from "./page.jsx";
+import SyncUser from './auth/SyncUser.jsx'; 
 // import {} from "@/components/ui/breadcrumb";
 // import { Separator } from "@/components/ui/separator";
 import {
@@ -17,6 +18,7 @@ function App() {
       </SignedOut>
 
       <SignedIn>
+        <SyncUser/>
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
