@@ -17,7 +17,7 @@ import {
 function Ideas () {
   return (
     <>
-      <div className='col-span-2 min-h-[90vh] rounded-xl bg-muted/50 p-5'>
+      <div className='col-span-2 min-h-[90vh] rounded-xl  p-5'>
         <Card>
           <CardHeader>
             <CardTitle className="flex justify-between items-center">
