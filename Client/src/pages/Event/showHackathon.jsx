@@ -12,14 +12,11 @@ import {
 } from '@/components/ui/card'
 import hackImg from '../../assets/hack.jpg'
 import { TbListDetails } from 'react-icons/tb'
-import { useNavigate } from 'react-router-dom'
 
-function Hackathons () {
-  const navigate = useNavigate();
-
+function showHackathon() {
   return (
     <div className='col-span-2 min-h-[90vh] rounded-xl bg-muted/50 p-4'>
-      <Card onClick={() => navigate("/events/hackathons/show")}>
+      <Card>
         <CardHeader>
           <CardTitle>Innovate Hackathon</CardTitle>
           <CardDescription>Organized by Raisoni Skill Tech University</CardDescription>
@@ -40,4 +37,4 @@ function Hackathons () {
   )
 }
 
-export default Hackathons
+export default showHackathon
