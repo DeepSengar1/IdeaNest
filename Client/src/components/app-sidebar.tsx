@@ -1,36 +1,28 @@
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
   Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
-
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+} from "lucide-react";
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import "@clerk/clerk-react";
 
-// This is sample data.
+// ⚠ WARNING: DONOT REMOVE ANY COMMENTS, THOSE MAY GET ADDED IN FUTURE.
+
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   teams: [
     {
       name: "IdeaNest",
@@ -38,100 +30,58 @@ const data = {
       // plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "Switch to mentor.",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "mentor account",
     },
     {
-      name: "Evil Corp.",
+      name: "Switch to student.",
       logo: Command,
-      plan: "Free",
+      plan: "mentor account",
     },
   ],
   navMain: [
     {
       title: "Home",
-      url: "#",
+      url: "/",
       icon: SquareTerminal,
       isActive: true,
-      items: [
-        {
-          title: "Ideas",
-          url: "#",
-        },
-        {
-          title: "Projects",
-          url: "#",
-        },
-      ],
+      // items: [
+      //   {
+      //     title: "Ideas",
+      //     url: "#",
+      //   },
+      // ],
     },
     {
       title: "Events",
-      url: "#",
+      url: "/events",
       icon: Bot,
-      items: [
-        {
-          title: "Hackathons",
-          url: "#",
-        },
-        {
-          title: "Webinar",
-          url: "#",
-        },
-        {
-          title: "Workshops",
-          url: "#",
-        },
-      ],
+      // items: [
+      //   {
+      //     title: "Hackathons",
+      //     url: "/hakathons",
+      //   },
+      // ],
     },
     {
       title: "Community",
-      url: "#",
+      url: "/community",
       icon: Settings2,
-      items: [
-        {
-          title: "Global",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "DM",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Create",
-      url: "#",
-      icon: BookOpen,
+      // items: [
+      //   {
+      //     title: "Global",
+      //     url: "#",
+      //   },
+      // ],
     },
     {
       title: "Search",
       url: "#",
       icon: BookOpen,
-    }
-  ],
-  projects: [
-    {
-      name: "Mentorship",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -141,12 +91,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
