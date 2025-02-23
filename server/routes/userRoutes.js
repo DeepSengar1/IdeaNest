@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const { clerkId, name, email, role } = req.body;
+  console.log(req.body);
+  
   try {
     const user = await User.findOneAndUpdate(
       { clerkId: clerkId },
@@ -13,6 +15,7 @@ router.post("/", async (req, res) => {
         email: email,
         role: role,
         // avatarUrl: avatarUrl,
+
       },
       { new: true, upsert: true }
     );

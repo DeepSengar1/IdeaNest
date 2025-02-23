@@ -10,6 +10,10 @@ import ChatMessage from "./models/ChatMessage.js";
 import chatRouter from "./routes/chatRoutes.js";
 import { requireAuth } from "@clerk/express";
 import User from "./models/User.js";
+import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+import uploadRouter from './routes/uploadRoute.js'
 
 dotenv.config();
 console.log("CLERK_PUBLISHABLE_KEY:", process.env.CLERK_PUBLISHABLE_KEY);
@@ -31,6 +35,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", requireAuth(), userRoutes);
 app.use("/api/chat", requireAuth(), chatRouter);
+app.use("/api/upload", requireAuth(), uploadRouter);
 
 connectDB();
 
@@ -41,6 +46,34 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+
+// Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Multer Cloudinary Storage for different file types
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: async (req, file) => {
+    let folder = "uploads"; // Cloudinary folder
+    let resource_type = "auto"; // Auto-detect type (image, video, raw file)
+    
+    return {
+      folder: folder,
+      resource_type: resource_type,
+      format: file.mimetype === "application/pdf" ? "pdf" : undefined, // Force PDF format if applicable
+    };
+  },
+});
+
+// ✅ Create Multer Upload Middleware
+const upload = multer({ storage });
+
+// ✅ Export Cloudinary, Storage, and Upload
+export { cloudinary, storage, upload };
 
 io.on("connection", (socket) => {
   console.log("New client connected:", socket.id);

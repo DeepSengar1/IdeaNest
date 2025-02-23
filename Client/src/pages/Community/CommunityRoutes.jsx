@@ -1,18 +1,12 @@
-import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom'; // Import Link and Route from react-router-dom
-import Hackathons from './Hackathons';
-import Webinar from './Webinar';
-import Workshop from './Workshop';
-import showHackathon from './showHackathon';
+import React from 'react'
 
-function EventRoutes() {
+function CommunityRoutes() {
   return (
     <>
       {/* Navigation Links */}
       <div className='flex gap-5 p-5 ml-12 text-lg'>
-        <Link to='/events/hackathons'>Hackathons</Link>
-        <Link to='/events/webinars'>Webinars</Link>
-        <Link to='/events/workshops'>Workshops</Link>
+        <Link to='/community/global'>Hackathons</Link>
+        <Link to='/community/webinars'>Webinars</Link>
       </div>
 
       {/* Main Content Section */}
@@ -29,7 +23,7 @@ function EventRoutes() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default EventRoutes;
+export default CommunityRoutes
