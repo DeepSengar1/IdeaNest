@@ -8,9 +8,9 @@ import Upload from "./pages/Upload.jsx";
 function Page() {
   return (
       <Routes>
+        <Route index element={<HomeRoutes />} />
         <Route path="/home/*" element={<HomeRoutes />} />
         <Route path="/events/*" element={<EventRoutes />} />
-        {/* <Route path="/create" element={<Create />} /> */}
         <Route path="/community" element={<Community />} />
         <Route path="/message" element={<Message />} />
         <Route path="/api/upload" element={<Upload />} />

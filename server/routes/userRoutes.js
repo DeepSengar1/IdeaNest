@@ -14,7 +14,8 @@ router.post("/", async (req, res) => {
         name: name,
         email: email,
         role: role,
-        avatarUrl: avatarUrl,
+        // avatarUrl: avatarUrl,
+
       },
       { new: true, upsert: true }
     );
