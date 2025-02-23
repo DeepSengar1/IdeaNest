@@ -1,12 +1,14 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
+  Search,
+  Calendar,
   Command,
+  Globe,
   GalleryVerticalEnd,
-  Settings2,
-  SquareTerminal,
+  BadgePlus,
+  MessageCircle,
+  House,
 } from "lucide-react";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -44,7 +46,7 @@ const data = {
     {
       title: "Home",
       url: "/",
-      icon: SquareTerminal,
+      icon: House,
       isActive: true,
       // items: [
       //   {
@@ -56,7 +58,7 @@ const data = {
     {
       title: "Events",
       url: "/events",
-      icon: Bot,
+      icon: Calendar,
       // items: [
       //   {
       //     title: "Hackathons",
@@ -65,9 +67,31 @@ const data = {
       // ],
     },
     {
+      title: "Create",
+      url: "/create",
+      icon: BadgePlus,
+      // items: [
+      //   {
+      //     title: "Global",
+      //     url: "#",
+      //   },
+      // ],
+    },
+    {
       title: "Community",
       url: "/community",
-      icon: Settings2,
+      icon: Globe,
+      // items: [
+      //   {
+      //     title: "Global",
+      //     url: "#",
+      //   },
+      // ],
+    },
+    {
+      title: "Message",
+      url: "/message",
+      icon: MessageCircle,
       // items: [
       //   {
       //     title: "Global",
@@ -78,7 +102,7 @@ const data = {
     {
       title: "Search",
       url: "#",
-      icon: BookOpen,
+      icon: Search,
     },
   ],
 };
