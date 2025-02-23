@@ -7,10 +7,16 @@ router.post("/", async (req, res) => {
   const { clerkId, name, email, role } = req.body;
   try {
     const user = await User.findOneAndUpdate(
-      { clerkId },
-      { name, email, role },
+      { clerkId: userData.clerkId },
+      {
+        name: userData.name,
+        email: userData.email,
+        role: userData.role,
+        avatarUrl: userData.avatarUrl,
+      },
       { new: true, upsert: true }
     );
+
     res.json(user);
   } catch (error) {
     console.error("Error updating user:", error);
