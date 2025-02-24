@@ -68,10 +68,13 @@ export default function Community() {
   };
 
   return (
-    <div className="h-[calc(100vh-70px)] overflow-hidden ">
+    <div className="flex flex-col h-screen bg-gradient-to-r from-purple-900 to-indigo-900 text-white p-6 ">
+      <h2 className="text-2xl font-bold mb-4 text-center">
+        ✨ Global Chat Room 🌍
+      </h2>
       <div className="text-white flex flex-col h-full overflow-hidden  shadow-lg">
         {/* Chat Area */}
-        <main className="px-8 overflow-y-auto m-auto max-w-[1400px] w-full min-w-min">
+        <main className="flex-1 overflow-y-auto p-4 bg-gray-800 bg-opacity-50 rounded-xl shadow-lg backdrop-blur-md">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -114,18 +117,18 @@ export default function Community() {
         {/* Message Input */}
         <form
           onSubmit={handleSendMessage}
-          className="flex items-center gap-2 p-2 bg-neutral-800 px-24"
+          className="flex items-center gap-2 p-2 px-24"
         >
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type your message..."
-            className="flex-grow p-3 bg-transparent focus:outline-none focus:ring-2 focus:ring-transparent text-gray-300 placeholder-gray-400"
+            className="flex-1 px-4 py-2 bg-gray-900 bg-opacity-70 border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent shadow-md transition"
           />
           <button
             type="submit"
-            className="bg-zinc-700 hover:bg-blue-700 text-white px-5 py-3 rounded-lg transition duration-200 shadow-lg"
+            className="bg-purple-600 px-4 py-2 rounded-xl flex items-center shadow-lg hover:bg-purple-700 transition-transform transform active:scale-95"
           >
             <div className="flex gap-4">
               <p>Send</p>
