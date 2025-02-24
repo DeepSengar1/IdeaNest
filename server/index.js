@@ -93,7 +93,7 @@ io.on("connection", (socket) => {
       });
       await chatMsg.save();
 
-      const populatedMsg = await chatMsg.populate("sender", "name avatarUrl");
+      const populatedMsg = await chatMsg.populate("sender", "name avatar");
       io.emit("chat message", populatedMsg);
     } catch (error) {
       console.error("Error saving chat message:", error);
