@@ -1,28 +1,32 @@
-import express from "express";
-import User from "../models/User.js";
+// import express from "express";
+// import User from "../models/User.js";
 
-const router = express.Router();
+// const router = express.Router();
 
-router.post("/", async (req, res) => {
-  const { clerkId, name, email, role } = req.body;
-  
-  try {
-    const user = await User.findOneAndUpdate(
-      { clerkId: clerkId },
-      {
-        name: name,
-        email: email,
-        role: role,
-        // avatarUrl: avatarUrl,
-      },
-      { new: true, upsert: true }
-    );
+// router.post("/users", async (req, res) => {
+//   console.log("Received POST request:", req.body); // Debugging step
 
-    res.json(user);
-  } catch (error) {
-    console.error("Error updating user:", error);
-    res.status(500).json({ message: "Server error" });
-  }
-});
+//   const { clerkId, name, email, role } = req.body;
 
-export default router;
+//   if (!clerkId || !email) {
+//     return res.status(400).json({ message: "clerkId and email are required" });
+//   }
+
+//   try {
+//     const user = await User.findOneAndUpdate(
+//       { clerkId },
+//       { name, email, role },
+//       { new: true, upsert: true }
+//     );
+
+//     console.log("User saved/updated:", user); // Debugging step
+
+//     res.json(user);
+//   } catch (error) {
+//     console.error("Error updating user:", error);
+//     res.status(500).json({ message: "Server error", error: error.message });
+//   }
+// });
+
+
+// export default router;
