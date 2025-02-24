@@ -37,10 +37,14 @@ function Ideas() {
   return (
 <<<<<<< Updated upstream
     <div className="grid  lg:grid-cols-3">
+<<<<<<< Updated upstream
       <div className="grid col-span-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-6 text-white p-6 2xl:grid-cols-2 3xl:grid-cols-3">
 =======
     <div className="grid  md:grid-cols-3">
       <div className="grid col-span-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-white p-6 2xl:grid-cols-4 3xl:grid-cols-5">
+>>>>>>> Stashed changes
+=======
+      <div className="grid col-span-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 text-white p-6 xl:grid-cols-2 3xl:grid-cols-3">
 >>>>>>> Stashed changes
         {ideas.map((idea) => {
           // techStacks is assumed to be an array from the backend
@@ -76,16 +80,18 @@ function Ideas() {
                 <p className=" text-neutral-400 font-bold px-2">
                   Category: {idea.category}
                 </p>
-                <div className="">
-                  <div className="flex flex-wrap py-2 gap-3 ">
-                    {techStackArray.map((stack, i) => (
-                      <span
-                        key={i}
-                        className="bg-neutral-700 text-xs px-2 py-1 mb-1 rounded-md"
-                      >
-                        {stack}
-                      </span>
-                    ))}
+                <div className="flex  w-full">
+                  <div className="flex w-full justify-between">
+                    <div className="flex flex-wrap py-2 gap-3 items-center ">
+                      {techStackArray.map((stack, i) => (
+                        <span
+                          key={i}
+                          className="bg-neutral-700 text-xs box-content px-2 py- h-fit  rounded-md"
+                        >
+                          {stack}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 =======

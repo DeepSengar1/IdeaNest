@@ -52,7 +52,7 @@ function Create() {
   return (
     <>
       <div
-        className="py-2 px-4 flex items-center gap-2 rounded-lg bg-slate-600 cursor-pointer hover:bg-slate-700 text-md"
+        className="py-2 px-4 font-medium flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-pink-500 cursor-pointer text-md shadow-sm shadow-violet-100"
         onClick={() => setIsOpen(true)}
       >
         <Plus /> Create project
