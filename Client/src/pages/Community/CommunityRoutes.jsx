@@ -1,5 +1,3 @@
-import React from 'react'
-// import GlobalChat from './GlobalChat'
 import IssueChat from './IssueChat'
 import Community from './Community'
 import { Link, Route, Routes } from 'react-router-dom'; 
