@@ -55,7 +55,7 @@ function Create() {
         className="py-2 px-4 flex items-center gap-2 rounded-lg bg-slate-600 cursor-pointer hover:bg-slate-700 text-md"
         onClick={() => setIsOpen(true)}
       >
-        <Plus /> Create
+        <Plus /> Create project
       </div>
 
       {/* Popup Modal */}

@@ -13,7 +13,7 @@ import User from "./models/User.js";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
-import uploadRouter from './routes/uploadRoute.js'
+import uploadRouter from "./routes/uploadRoute.js";
 import submissionRoutes from "./routes/IdeaSubmissionRoute.js";
 
 dotenv.config();
@@ -62,7 +62,7 @@ const storage = new CloudinaryStorage({
   params: async (req, file) => {
     let folder = "uploads"; // Cloudinary folder
     let resource_type = "auto"; // Auto-detect type (image, video, raw file)
-    
+
     return {
       folder: folder,
       resource_type: resource_type,
