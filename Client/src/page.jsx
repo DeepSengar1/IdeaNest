@@ -7,20 +7,14 @@ import CommunityRoutes from "./pages/Community/CommunityRoutes.jsx";
 
 function Page() {
   return (
-      <Routes>
-        <Route index element={<HomeRoutes />} />
-        <Route path="/home/*" element={<HomeRoutes />} />
-        <Route path="/events/*" element={<EventRoutes />} />
-        {/* <Route path="/create" element={<Create />} /> */}
-        <Route path="/community/*" element={<CommunityRoutes />} />
-        <Route path="/message" element={<Message />} />
-        <Route path="/api/upload" element={<Upload />} />
-
-
-        {/* <Route path="/submission/:id" element={<ShowProjectDetails />} /> */}
-
-
-      </Routes>
+    <Routes>
+      <Route index element={<HomeRoutes />} />
+      <Route path="/home/*" element={<HomeRoutes />} />
+      <Route path="/events/*" element={<EventRoutes />} />
+      <Route path="/community/*" element={<CommunityRoutes />} />
+      <Route path="/message" element={<Message />} />
+      <Route path="/api/upload" element={<Upload />} />
+    </Routes>
   );
 }
 

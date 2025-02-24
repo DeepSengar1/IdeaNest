@@ -1,29 +1,37 @@
-import IssueChat from './IssueChat'
-import Community from './Community'
-import { Link, Route, Routes } from 'react-router-dom'; 
+import IssueChat from "./IssueChat";
+import Community from "./GlobalChat.jsx";
+import { NavLink, Route, Routes, Navigate } from "react-router-dom";
 
 function CommunityRoutes() {
+  const linkClasses = ({ isActive }) =>
+    isActive
+      ? "text-white border-b border-white pb-0.5"
+      : "text-gray-400 pb-0.5";
+
   return (
     <>
       {/* Navigation Links */}
-      <div className='flex flex-wrap items-center gap-x-6 px-6 py-4 rounded-xl ml-12 text-lg font-medium w-full text-white bg-neutral-900 fixed'>
-        <Link to='/community/global'>Global</Link>
-        <Link to='/community/issues'>Issues</Link>
+      <div className="bg-neutral-900 p-4 pl-16 flex justify-between items-center h-16">
+        <div className="flex gap-7 text-lg font-semibold">
+          <NavLink to="/community/global" className={linkClasses}>
+            Global - chat
+          </NavLink>
+          <NavLink to="/community/issues" className={linkClasses}>
+            Issues
+          </NavLink>
+        </div>
       </div>
 
       {/* Main Content Section */}
-      <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
-        <div className='grid grid-cols-3 gap-4'>
-          {/* Render components based on the current route */}
-          <Routes>
-            <Route index element={<Community />} />
-            <Route path='/global' element={<Community />} />
-            <Route path='/issues' element={<IssueChat />} />
-          </Routes>
-        </div>
+      <div className="flex flex-1 flex-col pt-0">
+        <Routes>
+          <Route index element={<Navigate to="/community/global" replace />} />
+          <Route path="/global" element={<Community />} />
+          <Route path="/issues" element={<IssueChat />} />
+        </Routes>
       </div>
     </>
-  )
+  );
 }
 
-export default CommunityRoutes
+export default CommunityRoutes;
