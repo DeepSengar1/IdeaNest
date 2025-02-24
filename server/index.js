@@ -14,6 +14,7 @@ import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
 import uploadRouter from './routes/uploadRoute.js'
+import submissionRoutes from "./routes/IdeaSubmissionRoute.js";
 
 dotenv.config();
 console.log("CLERK_PUBLISHABLE_KEY:", process.env.CLERK_PUBLISHABLE_KEY);
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 app.use("/api/users", requireAuth(), userRoutes);
 app.use("/api/chat", requireAuth(), chatRouter);
 app.use("/api/upload", requireAuth(), uploadRouter);
+app.use("/api/submissions", submissionRoutes);
 
 connectDB();
 
