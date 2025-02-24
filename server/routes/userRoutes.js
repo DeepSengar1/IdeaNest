@@ -4,10 +4,7 @@ import User from "../models/User.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  console.log("Received POST request:", req.body); // Debugging step
-
-  const { clerkId, name, email, role } = req.body;
-
+  const { clerkId, name, email, role, avatar } = req.body;
   if (!clerkId || !email) {
     return res.status(400).json({ message: "clerkId and email are required" });
   }
@@ -15,11 +12,9 @@ router.post("/", async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
       { clerkId },
-      { name, email, role },
+      { name, email, role, avatar },
       { new: true, upsert: true }
     );
-
-    console.log("User saved/updated:", user); // Debugging step
 
     res.json(user);
   } catch (error) {
@@ -27,6 +22,5 @@ router.post("/", async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
-
 
 export default router;
