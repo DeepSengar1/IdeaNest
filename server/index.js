@@ -13,12 +13,9 @@ import { requireAuth } from "@clerk/express";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
-import uploadRouter from './routes/uploadRoute.js'
-<<<<<<< HEAD
-import User from './models/User.js'
-=======
+import uploadRouter from "./routes/uploadRoute.js";
+import User from "./models/User.js";
 import submissionRoutes from "./routes/IdeaSubmissionRoute.js";
->>>>>>> 85da9f2b9812267c24337e3213d25285e231f484
 
 dotenv.config();
 console.log("CLERK_PUBLISHABLE_KEY:", process.env.CLERK_PUBLISHABLE_KEY);
@@ -76,8 +73,6 @@ app.post("/user", async (req, res) => {
   }
 });
 
-
-
 connectDB();
 
 const server = http.createServer(app);
@@ -101,7 +96,7 @@ const storage = new CloudinaryStorage({
   params: async (req, file) => {
     let folder = "uploads"; // Cloudinary folder
     let resource_type = "auto"; // Auto-detect type (image, video, raw file)
-    
+
     return {
       folder: folder,
       resource_type: resource_type,
