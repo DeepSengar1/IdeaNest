@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Card,
   CardContent,
@@ -7,13 +6,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
-import {
-  FaUser,
-  FaBuilding,
-  FaRupeeSign,
-  FaUsers,
-  FaArrowRight
-} from 'react-icons/fa'
+
 import { Calendar, Clock } from 'lucide-react'
 
 function Workshop () {

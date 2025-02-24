@@ -1,74 +1,100 @@
-const projectData = [
+import { Star } from "lucide-react";
+
+const dummyData = [
   {
-    id: 1,
-    type: "Approved",
-    title: "Project Alpha",
+    title: "Eccentric",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien eu facilisis placerat, lacus quam consequat quam, quis scelerisque justo metus vel eros. More text here...",
-    category: "Tech-stack",
+      "Something about this character calls to you. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    category: "Art",
+    starCount: 12,
+    techStacks: "React, Tailwind, Lucide-React",
   },
   {
-    id: 2,
-    type: "Not Approved",
-    title: "Project Beta",
+    title: "Whimsical",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
-      "Praesent eu bibendum lectus. Cras sit amet arcu at justo blandit viverra sed at elit. Pellentesque habitant morbi tristique senectus et netus.",
-    category: "Tech-stack",
+      "Another short description goes here. This project is about creating magical user experiences and whimsical designs.",
+    category: "UI/UX",
+    starCount: 7,
+    techStacks: "Next.js, Tailwind, TypeScript",
   },
   {
-    id: 3,
-    type: "Approved",
-    title: "Project Gamma",
+    title: "Mystic",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
-      "Aenean sodales nulla vel justo hendrerit, et pharetra metus malesuada. Vivamus sed nunc eget orci porta pulvinar quis a lectus.",
-    category: "Tech-stack",
+      "A mysterious project that delves deep into unknown territories of the codebase, pushing boundaries and exploring new frontiers. It's quite intriguing!",
+    category: "Experiment",
+    starCount: 25,
+    techStacks: "React, Redux, Node.js",
+  },
+  {
+    title: "Galactic",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "An interstellar journey through code and design, bridging the gap between creativity and logic.",
+    category: "Space",
+    starCount: 3,
+    techStacks: "Vue, Tailwind, Firebase",
   },
 ];
 
-function ProjectCard({ project }) {
-  // Color logic for "Approved" vs. "Not Approved"
-  const typeColor =
-    project.type.toLowerCase() === "approved"
-      ? "text-green-500"
-      : "text-red-500";
-
+function Project() {
   return (
-    <div className="bg-neutral-800 rounded-lg shadow-md p-4 flex flex-col">
-      {/* Top row: Type + Star button */}
-      <div className="flex items-center justify-between">
-        <span className={`text-xs uppercase font-bold ${typeColor}`}>
-          {project.type}
-        </span>
-        <button
-          className="text-sm text-neutral-400 hover:text-neutral-200 transition-colors"
-          aria-label="Star this project"
-        >
-          Star the proj
-        </button>
-      </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-white p-6 2xl:grid-cols-4 3xl:grid-cols-5">
+      {dummyData.map((project, index) => {
+        const techStackArray = project.techStacks
+          .split(",")
+          .map((item) => item.trim());
 
-      <h2 className="text-lg font-semibold mt-2">{project.title}</h2>
-      <div className="bg-neutral-700 rounded-lg h-32 mt-3 mb-3"></div>
-      <p className="text-neutral-300 text-sm line-clamp-3">
-        {project.description}
-      </p>
-      <div className="mt-auto pt-3 text-xs text-neutral-400">
-        Category: {project.category}
-      </div>
+        return (
+          <div
+            key={index}
+            className="relative bg-neutral-800 p-6 rounded-lg shadow hover:shadow-lg border border-gray-500/50 cursor-pointer hover:shadow-neutral-500/50 hover:border-slate-500 text-sm space-y-4"
+          >
+            <div className="flex">
+              <button
+                className="absolute top-3 right-4 flex items-center text-neutral-400 hover:text-yellow-400"
+                // onClick={() => handleStar(project.id)} // Example if you want to handle star onClick
+              >
+                <Star size={18} />
+                <span className="ml-1 text-sm">{project.starCount} stars</span>
+              </button>
+              <h2 className="text-xl font-semibold mt-1.5 line-clamp-1">
+                {project.title}
+              </h2>
+            </div>
+
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              className="w-full h-40 object-cover rounded-md mb-2"
+            />
+            <p className="line-clamp-2 ">{project.description}</p>
+
+            <p className=" text-neutral-400 font-bold">
+              Category: {project.category}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mt-3">
+              {techStackArray.map((stack, i) => (
+                <span
+                  key={i}
+                  className="bg-neutral-700 text-xs px-2 py-1 rounded-md"
+                >
+                  {stack}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-function Projects() {
-  return (
-    <div className="text-white p-6">
-      <div className="max-w-7xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {projectData.map((proj) => (
-          <ProjectCard key={proj.id} project={proj} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default Projects;
+export default Project;

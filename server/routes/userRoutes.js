@@ -14,10 +14,6 @@ router.post("/", async (req, res) => {
         email: email,
         role: role,
         // avatarUrl: avatarUrl,
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
       },
       { new: true, upsert: true }
     );

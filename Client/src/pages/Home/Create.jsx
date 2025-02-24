@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BsPencilSquare } from "react-icons/bs";
+import { Plus } from "lucide-react";
 import { GoFileMedia } from "react-icons/go";
 import axios from "axios";
 
@@ -86,16 +86,15 @@ function Create() {
   return (
     <>
       <div
-        className="py-2 px-5 flex items-center gap-3 rounded-lg bg-slate-600 cursor-pointer hover:bg-slate-700"
+        className="py-2 px-4 flex items-center gap-2 rounded-lg bg-slate-600 cursor-pointer hover:bg-slate-700 text-md"
         onClick={() => setIsOpen(true)}
       >
-        <BsPencilSquare className="text-md text-whtie-500" />
-        <h2 className="text-md">Create</h2>
+        <Plus /> Create 
       </div>
 
       {/* Popup Modal */}
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm z-10">
           <div className="bg-zinc-900 rounded-xl shadow-lg p-6 w-full max-w-xl relative space-y-1">
             <button
               className="absolute top-2 right-4 text-zinc-400 hover:text-white text-3xl h-0"
