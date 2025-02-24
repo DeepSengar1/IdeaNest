@@ -1,25 +1,24 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import axios from "axios";
+import { useUser } from "@clerk/clerk-react";
 
 function Create() {
+  const { user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Form data state including title, category, description, techStacks, and imageUrl
   const [formData, setFormData] = useState({
     title: "",
     category: "",
     description: "",
     techStacks: "",
-    imageUrl: "", // Changed from file to imageUrl
+    imageUrl: "",
   });
 
-  // Update form fields
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Submit the new submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -33,7 +32,8 @@ function Create() {
       return;
     }
     try {
-      await axios.post("http://localhost:3000/api/submissions", formData);
+      const payload = { clerkId: user.id, ...formData };
+      await axios.post("http://localhost:3000/api/submissions", payload);
       alert("Submission successful!");
       setIsOpen(false);
       setFormData({
@@ -55,7 +55,7 @@ function Create() {
         className="py-2 px-4 flex items-center gap-2 rounded-lg bg-slate-600 cursor-pointer hover:bg-slate-700 text-md"
         onClick={() => setIsOpen(true)}
       >
-        <Plus /> Create 
+        <Plus /> Create
       </div>
 
       {/* Popup Modal */}
