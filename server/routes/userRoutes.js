@@ -4,7 +4,7 @@ import User from "../models/User.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { clerkId, name, email, role } = req.body;
+  const { clerkId, name, email, role, avatar } = req.body;
   
   try {
     const user = await User.findOneAndUpdate(
@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
         name: name,
         email: email,
         role: role,
-        // avatarUrl: avatarUrl,
+        avatar: avatar,
       },
       { new: true, upsert: true }
     );

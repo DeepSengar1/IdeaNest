@@ -12,26 +12,21 @@ const SyncUser = () => {
 
       try {
         const token = await getToken();
-
         const userData = {
           clerkId: user.id,
           name: user.fullName,
           email: user.primaryEmailAddress?.emailAddress,
+          avatar: user.imageUrl,
           role: "user",
         };
 
-        const response = await axios.post(
-          "http://localhost:3000/api/users",
-          userData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        console.log("User synced:", response.data);
+        await axios.post("http://localhost:3000/api/users", userData, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("User-profile synced to backend");
       } catch (error) {
         console.error("Sync error:", error);
       }
