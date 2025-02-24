@@ -37,7 +37,7 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
-      <SidebarMenu>
+      <SidebarMenu>       
         {items.map((item) => (
           <Collapsible
             key={item.title}
@@ -50,7 +50,7 @@ export function NavMain({
                 <Link to={item.url}>
                   <SidebarMenuButton tooltip={item.title}>
                     {item.icon && <item.icon />}
-                    <span className="text-xl">{item.title}</span>
+                    <span>{item.title}</span>
                     {/* <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" /> */}
                   </SidebarMenuButton>
                 </Link>

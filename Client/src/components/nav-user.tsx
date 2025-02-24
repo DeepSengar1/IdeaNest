@@ -31,7 +31,7 @@ export function NavUser() {
           className="flex items-center w-full text-left p-2 rounded-lg"
           onClick={handleClick}
         >
-          <div className="grid" onClick={handleClick} ref={userButtonRef}>
+          <div onClick={handleClick} ref={userButtonRef}>
             <UserButton
               appearance={{
                 baseTheme: dark,
@@ -40,7 +40,7 @@ export function NavUser() {
           </div>
           {!isMobile && (
             <div className="ml-3 flex flex-col">
-              <span className="text-lg font-semibold truncate">
+              <span className="text-sm font-semibold truncate">
                 {user.firstName} {user.lastName}
               </span>
             </div>

@@ -10,7 +10,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import LandingPage from "./pages/LandingPage.jsx";
+import LandingPage from "./pages/Landing Page/LandingPage.jsx";
 
 function App() {
   return (

@@ -205,7 +205,7 @@ const Ai = () => {
               <div className="flex flex-col items-center justify-center h-full">
                 <p className="text-lg font-medium text-center">
                   Hey! Welcome to{" "}
-                  <span style={{ color: "var(--btn)" }}>EduHaven AI</span>
+                  <span style={{ color: "var(--btn)" }}>IdeaNest AI</span>
                   <br />
                   How can I help you today?
                 </p>

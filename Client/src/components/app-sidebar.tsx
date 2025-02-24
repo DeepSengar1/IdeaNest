@@ -77,15 +77,14 @@ const data = {
       // ],
     },
     {
-      title: "Message",
-      url: "/message",
-      icon: MessageCircle,
-      // items: [
-      //   {
-      //     title: "Global",
-      //     url: "#",
-      //   },
-      // ],
+      title: "Search",
+      url: "#",
+      icon: Search,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: Search,
     },
     {
       title: "Search",
