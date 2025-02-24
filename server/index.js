@@ -5,20 +5,16 @@ import cookieParser from "cookie-parser";
 import http from "http";
 import { Server } from "socket.io";
 import connectDB from "./config/db.js";
-// import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import ChatMessage from "./models/ChatMessage.js";
 import chatRouter from "./routes/chatRoutes.js";
 import { requireAuth } from "@clerk/express";
-// import User from "./models/User.js";
+import User from "./models/User.js";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
 import uploadRouter from './routes/uploadRoute.js'
-<<<<<<< HEAD
-import User from './models/User.js'
-=======
 import submissionRoutes from "./routes/IdeaSubmissionRoute.js";
->>>>>>> 85da9f2b9812267c24337e3213d25285e231f484
 
 dotenv.config();
 console.log("CLERK_PUBLISHABLE_KEY:", process.env.CLERK_PUBLISHABLE_KEY);
@@ -38,45 +34,10 @@ app.use(cookieParser());
 //   res.send("Backend is running");
 // });
 
-// app.use("/", requireAuth(), userRoutes);
+app.use("/api/users", requireAuth(), userRoutes);
 app.use("/api/chat", requireAuth(), chatRouter);
 app.use("/api/upload", requireAuth(), uploadRouter);
 app.use("/api/submissions", submissionRoutes);
-
-app.post("/user", async (req, res) => {
-  console.log("Received request body:", req.body); // Debugging step
-
-  const { clerkId, name, email, role } = req.body;
-
-  if (!clerkId) {
-    return res.status(400).json({ message: "clerkId is required" });
-  }
-
-  try {
-    let updateFields = { name, role };
-
-    // Only update the email if it's valid (not null/undefined)
-    if (email) {
-      updateFields.email = email;
-    } else {
-      updateFields.$unset = { email: "" }; // Remove email field if null
-    }
-
-    const user = await User.updateOne(
-      { clerkId },
-      { $set: updateFields },
-      { upsert: true }
-    );
-
-    console.log("User saved/updated:", user);
-    res.json({ message: "User updated successfully", user });
-  } catch (error) {
-    console.error("Error updating user:", error);
-    res.status(500).json({ message: "Server error", error: error.message });
-  }
-});
-
-
 
 connectDB();
 
