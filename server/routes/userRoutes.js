@@ -3,8 +3,25 @@
 
 // const router = express.Router();
 
+<<<<<<< HEAD
 // router.post("/users", async (req, res) => {
 //   console.log("Received POST request:", req.body); // Debugging step
+=======
+router.post("/", async (req, res) => {
+  const { clerkId, name, email, role, avatar } = req.body;
+  
+  try {
+    const user = await User.findOneAndUpdate(
+      { clerkId: clerkId },
+      {
+        name: name,
+        email: email,
+        role: role,
+        avatar: avatar,
+      },
+      { new: true, upsert: true }
+    );
+>>>>>>> 85da9f2b9812267c24337e3213d25285e231f484
 
 //   const { clerkId, name, email, role } = req.body;
 

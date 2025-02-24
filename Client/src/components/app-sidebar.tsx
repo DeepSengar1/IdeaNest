@@ -66,17 +66,6 @@ const data = {
       // ],
     },
     {
-      title: "Create",
-      url: "/create",
-      icon: BadgePlus,
-      // items: [
-      //   {
-      //     title: "Global",
-      //     url: "#",
-      //   },
-      // ],
-    },
-    {
       title: "Community",
       url: "/community",
       icon: Globe,

@@ -15,6 +15,11 @@ function Page() {
         <Route path="/community/*" element={<CommunityRoutes />} />
         <Route path="/message" element={<Message />} />
         <Route path="/api/upload" element={<Upload />} />
+
+
+        {/* <Route path="/submission/:id" element={<ShowProjectDetails />} /> */}
+
+
       </Routes>
   );
 }

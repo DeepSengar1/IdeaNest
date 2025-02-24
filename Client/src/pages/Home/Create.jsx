@@ -1,82 +1,48 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { GoFileMedia } from "react-icons/go";
 import axios from "axios";
+import { useUser } from "@clerk/clerk-react";
 
 function Create() {
+  const { user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [fileURL, setFileURL] = useState("");
-  const [fileName, setFileName] = useState("");
-  const [fileType, setFileType] = useState("");
-  const [isUploaded, setIsUploaded] = useState(false);
 
-  // Form data state
   const [formData, setFormData] = useState({
-    // userId: '',
     title: "",
+    category: "",
     description: "",
-    file: "",
+    techStacks: "",
+    imageUrl: "",
   });
 
-  // Handle text input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) {
-      alert("Please select a file first.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      setUploading(true);
-      const response = await axios.post(
-        "http://localhost:3000/api/upload",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-
-      if (response.data.url) {
-        setFileURL(response.data.url); // URL from Cloudinary
-        setFileName(file.name);
-        setFileType(file.type);
-        setUploading(false);
-        setIsUploaded(true);
-        setFormData((prev) => ({ ...prev, file: response.data.url }));
-        alert("Upload successful!");
-      } else {
-        alert("Upload failed: " + response.data.message);
-      }
-    } catch (error) {
-      console.error("Upload failed", error);
-      alert("Upload failed!");
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.description) {
+    if (
+      !formData.title ||
+      !formData.description ||
+      !formData.category ||
+      !formData.techStacks ||
+      !formData.imageUrl
+    ) {
       alert("Please fill out all fields.");
       return;
     }
-
     try {
-      await axios.post("http://localhost:3000/api/ideas", formData);
-      alert("Idea submitted successfully!");
-      setIsOpen(false); // Close modal on success
-      setFormData({ title: "", description: "", file: "" });
-      setIsUploaded(false);
+      const payload = { clerkId: user.id, ...formData };
+      await axios.post("http://localhost:3000/api/submissions", payload);
+      alert("Submission successful!");
+      setIsOpen(false);
+      setFormData({
+        title: "",
+        category: "",
+        description: "",
+        techStacks: "",
+        imageUrl: "",
+      });
     } catch (error) {
       console.error("Error submitting idea", error);
       alert("Error submitting idea");
@@ -89,7 +55,7 @@ function Create() {
         className="py-2 px-4 flex items-center gap-2 rounded-lg bg-slate-600 cursor-pointer hover:bg-slate-700 text-md"
         onClick={() => setIsOpen(true)}
       >
-        <Plus /> Create 
+        <Plus /> Create
       </div>
 
       {/* Popup Modal */}
@@ -107,7 +73,7 @@ function Create() {
                 <input
                   name="title"
                   className="w-full p-2 mb-4 bg-transparent border-b border-neutral-700 focus:border-b-slate-500 focus:ring focus:ring-transparent focus:outline-none"
-                  placeholder="What's name of your project?"
+                  placeholder="What's the name of your project?"
                   value={formData.title}
                   onChange={handleChange}
                   required
@@ -123,8 +89,18 @@ function Create() {
                 />
                 <br />
               </div>
-              <div className="">
-                <label
+              <div className="flex-1">
+                {/* Image URL input instead of file upload */}
+                <input
+                  name="imageUrl"
+                  className="w-full p-2 mb-4 bg-transparent border-b border-neutral-700 focus:border-b-slate-500 focus:ring focus:ring-transparent focus:outline-none"
+                  placeholder="Image URL"
+                  value={formData.imageUrl}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              {/* <label
                   htmlFor="file-upload"
                   className={`flex flex-col items-center justify-center text-neutral-300 gap-2 cursor-pointer p-2 bg-zinc-800 rounded-md hover:bg-zinc-700 h-20 mt-6 ${
                     isUploaded ? "opacity-50 cursor-not-allowed" : ""
@@ -138,29 +114,7 @@ function Create() {
                       ? "Uploaded"
                       : "Add image"}
                   </span>
-                </label>
-                <input
-                  id="file-upload"
-                  name="file"
-                  type="file"
-                  className="hidden"
-                  onChange={handleFileChange}
-                  disabled={uploading || isUploaded}
-                  accept="*/*"
-                />
-                {fileURL && isUploaded && (
-                  <div className="mt-2 text-sm text-zinc-300">
-                    Uploaded File:{" "}
-                    <span className="text-blue-400">{fileName}</span>
-                    {fileType.includes("video") && (
-                      <video controls className="mt-2 w-full rounded-md">
-                        <source src={fileURL} type={fileType} />
-                        Your browser does not support the video tag.
-                      </video>
-                    )}
-                  </div>
-                )}
-              </div>
+                </label> */}
             </div>
             <br />
             <textarea
@@ -172,10 +126,8 @@ function Create() {
               rows={8}
               required
             />
-
             <br />
             <br />
-            {/* New Field: Tech Stacks Used */}
             <input
               name="techStacks"
               className="w-full p-2 mb-4 bg-transparent border-b border-neutral-700 focus:border-b-slate-500 focus:ring focus:ring-transparent focus:outline-none"
@@ -185,8 +137,6 @@ function Create() {
               required
             />
             <br />
-            <br />
-
             <br />
             <div className="flex justify-end gap-3">
               <button

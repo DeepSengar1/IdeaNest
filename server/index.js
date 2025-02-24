@@ -14,7 +14,11 @@ import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
 import uploadRouter from './routes/uploadRoute.js'
+<<<<<<< HEAD
 import User from './models/User.js'
+=======
+import submissionRoutes from "./routes/IdeaSubmissionRoute.js";
+>>>>>>> 85da9f2b9812267c24337e3213d25285e231f484
 
 dotenv.config();
 console.log("CLERK_PUBLISHABLE_KEY:", process.env.CLERK_PUBLISHABLE_KEY);
@@ -37,6 +41,7 @@ app.use(cookieParser());
 // app.use("/", requireAuth(), userRoutes);
 app.use("/api/chat", requireAuth(), chatRouter);
 app.use("/api/upload", requireAuth(), uploadRouter);
+app.use("/api/submissions", submissionRoutes);
 
 app.post("/user", async (req, res) => {
   console.log("Received request body:", req.body); // Debugging step
