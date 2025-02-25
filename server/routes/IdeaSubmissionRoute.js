@@ -2,23 +2,21 @@ import express from "express";
 import Submission from "../models/IdeaSubmission.js";
 import Comment from "../models/ProjectComments.js";
 import User from "../models/User.js";
-import { requireAuth } from "@clerk/clerk-sdk-node";
 
 const router = express.Router();
 
-// Get Ideas list
-// done done done
+// Fetch all unapproved submissions (treated as "Ideas")
 router.get("/ideas", async (req, res) => {
   try {
     const ideas = await Submission.find({ approved: false });
     res.json(ideas);
   } catch (error) {
+    console.error("Error fetching ideas:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// Get all Projects
-// done done done
+// Fetch all approved submissions (treated as "Projects")
 router.get("/projects", async (req, res) => {
   try {
     const projects = await Submission.find({ approved: true }).populate(
@@ -27,15 +25,12 @@ router.get("/projects", async (req, res) => {
     );
     res.json(projects);
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching projects:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// ----------------------- Detail Endpoint -----------------------
-
-// Get a single submission detail with its comments
-// done done
+// Fetch a single submission and its comments
 router.get("/:id", async (req, res) => {
   try {
     const submission = await Submission.findById(req.params.id).populate(
@@ -43,26 +38,27 @@ router.get("/:id", async (req, res) => {
       "name role avatar"
     );
     if (!submission) {
+      console.log("Submission not found:", req.params.id);
       return res.status(404).json({ message: "Submission not found" });
     }
+
     const comments = await Comment.find({
       submission: submission._id,
-    }).populate("user", "name email");
+    }).populate("user", "name avatar");
+
     res.json({ submission, comments });
   } catch (error) {
-    console.error(error);
+    console.error(" Error fetching submission details:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// ----------------------- Create & Update Endpoints -----------------------
-
-// Create new submission (Idea)
+// Create a new submission (unapproved by default -> "Idea")
 router.post("/", async (req, res) => {
-  const { title, imageUrl, description, category, techStacks } = req.body;
-  const { clerkId } = req.body;
+  const { title, imageUrl, description, category, techStacks, clerkId } =
+    req.body;
+
   try {
-    // Find the user by clerkId
     const user = await User.findOne({ clerkId });
     if (!user) {
       return res.status(401).json({ message: "User not found" });
@@ -80,65 +76,86 @@ router.post("/", async (req, res) => {
     });
 
     const savedSubmission = await newSubmission.save();
-    console.log(savedSubmission);
     res.status(201).json(savedSubmission);
   } catch (error) {
-    console.error(error);
+    console.error("Error creating submission:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// Approve a submission (only for authorized users, e.g., mentors/admins)
-router.put("/:id/approve", requireAuth, async (req, res) => {
+// Approve a submission (NO AUTH -> anyone can approve for now)
+router.put("/:id/approve", async (req, res) => {
   try {
-    // Optionally, check the user role here
+    console.log(`[DEBUG] Approving submission with id: ${req.params.id}`);
+    // If you want to see who triggered the approve, read it from req.body
+    // e.g., const { clerkId } = req.body; console.log("Approved by clerkId:", clerkId);
+
     const submission = await Submission.findById(req.params.id);
     if (!submission) {
+      console.log("[DEBUG] Submission not found for approval:", req.params.id);
       return res.status(404).json({ message: "Submission not found" });
     }
+
     submission.approved = true;
     const updatedSubmission = await submission.save();
+    console.log("[DEBUG] Submission approved. Saved data:", updatedSubmission);
     res.json(updatedSubmission);
   } catch (error) {
-    console.error(error);
+    console.error("[DEBUG] Error approving submission:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// Increment star count for a submission
-router.put("/:id/star", requireAuth, async (req, res) => {
+// Increment star count (NO AUTH -> anyone can star for now)
+router.put("/:id/star", async (req, res) => {
   try {
+    console.log(`[DEBUG] Starring submission with id: ${req.params.id}`);
+    // If you want to see who starred it, read from req.body or query
+    // e.g., const { clerkId } = req.body;
+
     const submission = await Submission.findById(req.params.id);
     if (!submission) {
+      console.log("[DEBUG] Submission not found for starring:", req.params.id);
       return res.status(404).json({ message: "Submission not found" });
     }
+
     submission.starCount += 1;
     const updatedSubmission = await submission.save();
+    console.log(
+      "[DEBUG] Star count updated. New count:",
+      updatedSubmission.starCount
+    );
     res.json(updatedSubmission);
   } catch (error) {
-    console.error(error);
+    console.error("[DEBUG] Error updating star count:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// Add a comment to a submission
-router.post("/:id/comment", requireAuth, async (req, res) => {
+// Add a comment to a submission (NO AUTH -> anyone can comment for now)
+router.post("/:id/comment", async (req, res) => {
   try {
-    const { comment } = req.body;
-    const clerkId = req.session.userId;
+    const { comment, clerkId } = req.body;
+    console.log(`[DEBUG] Adding comment to submission id: ${req.params.id}`);
+
     const user = await User.findOne({ clerkId });
     if (!user) {
+      console.log("[DEBUG] User not found for clerkId:", clerkId);
       return res.status(401).json({ message: "User not found" });
     }
+
     const newComment = new Comment({
       submission: req.params.id,
       user: user._id,
       comment,
     });
+
     const savedComment = await newComment.save();
+    console.log("[DEBUG] Comment saved successfully:", savedComment);
+
     res.status(201).json(savedComment);
   } catch (error) {
-    console.error(error);
+    console.error("[DEBUG] Error adding comment:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
