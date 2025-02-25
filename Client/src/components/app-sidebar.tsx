@@ -9,6 +9,7 @@ import {
   BadgePlus,
   MessageCircle,
   House,
+  UsersRound,
 } from "lucide-react";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -88,8 +89,13 @@ const data = {
     },
     {
       title: "Search",
-      url: "#",
+      url: "/searchMentors",
       icon: Search,
+    },
+    {
+      title: "Mentors",
+      url: "/mentors",
+      icon: UsersRound,
     },
   ],
 };
