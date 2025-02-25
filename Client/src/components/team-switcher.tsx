@@ -16,6 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import logo from "../assets/logo.png"
 
 export function TeamSwitcher({
   teams,
@@ -39,10 +40,10 @@ export function TeamSwitcher({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <activeTeam.logo className="size-4" />
+                <img src={logo}  className="size-7 rounded-xl" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">
+                <span className="truncate font-semibold text-2xl">
                   {activeTeam.name}
                 </span>
                 <span className="truncate text-xs">{activeTeam.plan}</span>

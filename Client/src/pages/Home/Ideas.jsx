@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Mentor from "./Mentor";
 
 function Ideas() {
   const [ideas, setIdeas] = useState([]);
@@ -81,6 +82,7 @@ function Ideas() {
           );
         })}
       </div>
+      <Mentor />
     </div>
   );
 }

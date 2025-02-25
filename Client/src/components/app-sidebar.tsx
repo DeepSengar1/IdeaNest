@@ -6,8 +6,9 @@ import {
   Globe,
   GalleryVerticalEnd,
   House,
-  UsersRound,
-  UserCheck
+  UserCheck,
+  CircleDollarSign,
+  TrendingUp
 } from "lucide-react";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -77,8 +78,13 @@ const data = {
     },
     {
       title: "Search",
-      url: "#",
+      url: "/searchMentors",
       icon: Search,
+    },
+    {
+      title: "Leaderboard",
+      url: "/leaderboard",
+      icon: TrendingUp,
     },
     {
       title: "Mentorship Program",
@@ -86,14 +92,9 @@ const data = {
       icon: UserCheck,
     },
     {
-      title: "Search",
-      url: "/searchMentors",
-      icon: Search,
-    },
-    {
-      title: "Mentors",
-      url: "/mentors",
-      icon: UsersRound,
+      title: "Funding",
+      url: "/fund",
+      icon: CircleDollarSign,
     },
   ],
 };
