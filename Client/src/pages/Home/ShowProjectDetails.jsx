@@ -3,10 +3,16 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Star } from "lucide-react";
 
+// 1️⃣ Import useUser from Clerk
+import { useUser } from "@clerk/clerk-react";
+
 function ShowProjectDetails() {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [commentText, setCommentText] = useState("");
+
+  // 2️⃣ Get the Clerk user
+  const { user } = useUser();
 
   // Fetch submission details and its comments
   useEffect(() => {
@@ -25,9 +31,12 @@ function ShowProjectDetails() {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     try {
+      // 3️⃣ Pass clerkId along with the comment
       await axios.post(`http://localhost:3000/api/submissions/${id}/comment`, {
         comment: commentText,
+        clerkId: user?.id, // user.id if you're sure user is not null
       });
+
       // Refresh details to show the new comment
       const response = await axios.get(
         `http://localhost:3000/api/submissions/${id}`
@@ -83,13 +92,12 @@ function ShowProjectDetails() {
             <div>
               <p className="text-lg font-bold">{submission.user.name}</p>
               <p className="text-sm text-gray-400">
-                {" "}
-                {new Date(submission.createdAt).toLocaleString()}{" "}
+                {new Date(submission.createdAt).toLocaleString()}
               </p>
             </div>
           </div>
         )}
-        <div className=" flex items-center gap-8">
+        <div className="flex items-center gap-8">
           <button
             className="flex items-center py-2 px-4 rounded-lg text-yellow-400 hover:text-yellow-300 hover:bg-yellow-900"
             onClick={handleStar}
@@ -160,20 +168,28 @@ function ShowProjectDetails() {
           )}
         </div>
       </div>
+
       {/* Discussion Section */}
-      <div className="m-6 border">
-        <h2 className="text-2xl font-semibold mb-2">Discussion</h2>
+      <div className="m-10 border bg-neutral-900 p-6 rounded-xl">
+        <h2 className="text-2xl font-semibold mb-8">Discussion</h2>
         {comments.map((comm) => (
-          <div key={comm._id} className="mb-3 border-b border-gray-500 pb-2">
-            <p className="text-sm font-bold">{comm.user.name}</p>
-            <p className="text-xs text-gray-400">
-              {new Date(comm.createdAt).toLocaleString()}
-            </p>
-            <p>{comm.comment}</p>
+          <div key={comm._id} className="mb-3">
+            <div className="flex gap-4">
+              <img src={comm.user.avatar} className="h-7 w-7 rounded-full" />
+              <div className="bg-gray-800/70 py-1 px-4 rounded-xl rounded-tl-none">
+                <div className="flex gap-8 text-zinc-400 items-center">
+                  <p className="text-sm font-bold">{comm.user.name}</p>
+                  <p className="text-xs text-gray-400">
+                    {new Date(comm.createdAt).toLocaleString()}
+                  </p>
+                </div>
+                <p>{comm.comment}</p>
+              </div>
+            </div>
           </div>
         ))}
-        <form onSubmit={handleCommentSubmit} className="mt-4">
-          <textarea
+        <form onSubmit={handleCommentSubmit} className="mt-6 flex gap-4 mx-12">
+          <input
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
             placeholder="Add your comment..."
@@ -182,9 +198,9 @@ function ShowProjectDetails() {
           />
           <button
             type="submit"
-            className="mt-2 px-4 py-2 bg-blue-600 rounded-md"
+            className="mt- px-4 py-2 bg-blue-600 rounded-md"
           >
-            Submit Comment
+            Submit
           </button>
         </form>
       </div>
