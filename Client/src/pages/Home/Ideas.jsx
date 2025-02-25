@@ -35,13 +35,8 @@ function Ideas() {
   };
 
   return (
-<<<<<<< Updated upstream
     <div className="grid md:grid-cols-3">
       <div className="grid col-span-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 text-white p-6 2xl:grid-cols-3 3xl:grid-cols-3">
-=======
-    <div className="grid  lg:grid-cols-3 ">
-      <div className="grid col-span-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 text-white p-6 xl:grid-cols-3 3xl:grid-cols-3">
->>>>>>> Stashed changes
         {ideas.map((idea) => {
           // techStacks is assumed to be an array from the backend
           const techStackArray = idea.techStacks;
@@ -54,7 +49,6 @@ function Ideas() {
               <img
                 src={idea.imageUrl}
                 alt={idea.title}
-<<<<<<< Updated upstream
                 className="w-full h-40 object-cover rounded-md mb-2"
               />
               <div className="flex flex-row-reverse p-2  lg:mb-3 sm:mb-4 justify-between items-center">
@@ -82,44 +76,6 @@ function Ideas() {
                     {stack}
                   </span>
                 ))}
-=======
-                className="w-full h-60 object-cover rounded-md "
-              />
-              <div className="grid h-40 px-6">
-                <div className="flex flex-row-reverse justify-between items-center">
-                  <button
-                    className="flex items-center text-neutral-400 hover:text-yellow-400"
-                    onClick={(e) => handleStar(idea._id, e)}
-                  >
-                    <Star size={18} />
-                    <span className="ml-1 text-sm">{idea.starCount} stars</span>
-                  </button>
-                  <h2 className="text-xl font-semibold  line-clamp-1">
-                    {idea.title}
-                  </h2>
-                </div>
-                <div className="">
-                  <p className="line-clamp-2  ">{idea.description}</p>
-                </div>
-                <p className=" text-neutral-400 font-bold px-2">
-                  Category: {idea.category}
-                </p>
-                <div className="flex  w-full">
-                  <div className="flex w-full justify-between">
-                    <div className="flex flex-wrap py-2 gap-3 items-center ">
-                      {techStackArray.map((stack, i) => (
-                        <span
-                          key={i}
-                          className="bg-neutral-700 text-xs box-content px-2 py- h-fit  rounded-md"
-                        >
-                          {stack}
-                        </span>
-                      ))}
-                    </div>
-                    <button className="fund">Fund </button>
-                  </div>
-                </div>
->>>>>>> Stashed changes
               </div>
             </div>
           );
