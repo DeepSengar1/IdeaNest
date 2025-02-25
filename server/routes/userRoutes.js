@@ -23,4 +23,15 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  const { name } = req;
+  console.log(name);
+  try {
+    const user = await User.find({ name: name });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
 export default router;
