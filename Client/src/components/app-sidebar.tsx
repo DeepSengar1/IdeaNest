@@ -3,11 +3,8 @@ import {
   AudioWaveform,
   Search,
   Calendar,
-  Command,
   Globe,
   GalleryVerticalEnd,
-  BadgePlus,
-  MessageCircle,
   House,
   UsersRound,
 } from "lucide-react";
@@ -83,9 +80,9 @@ const data = {
       icon: Search,
     },
     {
-      title: "Search",
-      url: "#",
-      icon: Search,
+      title: "Mentorship Program",
+      url: "/mentorship",
+      icon: UserCheck,
     },
     {
       title: "Search",

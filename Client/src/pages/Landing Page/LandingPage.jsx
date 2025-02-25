@@ -49,8 +49,8 @@ const LandingPage = () => {
                 Community
               </SignInButton>
             </div>
-            <div>
-              <SignInButton className='bg-gradient-to-r from-purple-600 to-blue-500 text-white py-3 px-8 rounded-md hover:from-purple-700 hover:to-blue-600 transition duration-300 z-30'>
+            <div className='z-50'>
+              <SignInButton className='bg-gradient-to-r from-purple-600 to-blue-500 text-white py-3 px-8 rounded-md hover:from-purple-700 hover:to-blue-600 transition duration-300 '>
                 Sign In
               </SignInButton>
             </div>
@@ -65,10 +65,9 @@ const LandingPage = () => {
               Make your imagination a reality
             </h1>
             <div className='mt-6 flex justify-center md:justify-start'>
-              <button className='bg-gradient-to-r from-purple-800 to-blue-700 text-white py-3 px-9 rounded-md hover:from-purple-700 hover:to-blue-800 transition duration-300 hover:scale-105 text-lg flex gap-4 items-center'>
+              <SignInButton className='bg-gradient-to-r from-purple-800 to-blue-700 text-white py-3 px-9 rounded-md hover:from-purple-700 hover:to-blue-800 transition duration-300 hover:scale-105 text-lg flex gap-4 items-center z-50'>
                 Get Started
-                <ChevronRight />
-              </button>
+              </SignInButton>
             </div>
           </div>
 

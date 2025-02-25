@@ -31,7 +31,7 @@ const Ai = () => {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(true);
   const [dimensions, setDimensions] = useState({ width: 350, height: 500 });
   const resizing = useRef(false);
   const startPos = useRef({ x: 0, y: 0 });
