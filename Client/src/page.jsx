@@ -9,6 +9,8 @@ import Leaderboard from './pages/Leaderboard.jsx'
 // import CreateCampaign from './pages/Funding/CreateCampaign.jsx'
 import CampaignDetails from './pages/Funding/CampaignDetails.jsx'
 import Fund from './pages/Funding/Fund.jsx'
+import SearchMentors from './pages/Search/SearchMentors.jsx'
+import SearchStudents from './pages/Search/SearchStudents.jsx'
 
 function Page () {
   return (
@@ -25,6 +27,8 @@ function Page () {
       <Route path='/fund' element={<Fund />} />
       {/* <Route path='/create' element={<CreateCampaign />} /> */}
       <Route path='/campaign/:id' element={<CampaignDetails />} />
+      <Route path='/searchMentors' element={<SearchMentors/>}/>
+      <Route path ='/searchStudents' element={<SearchStudents/>}/>
 
       {/* <Route path="/submission/:id" element={<ShowProjectDetails />} /> */}
     </Routes>

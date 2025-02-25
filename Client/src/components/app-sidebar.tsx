@@ -6,6 +6,7 @@ import {
   Globe,
   GalleryVerticalEnd,
   House,
+  UserCheck,
   UsersRound,
   UserCheck
 } from "lucide-react";
@@ -75,11 +76,7 @@ const data = {
       //   },
       // ],
     },
-    {
-      title: "Search",
-      url: "#",
-      icon: Search,
-    },
+    
     {
       title: "Mentorship Program",
       url: "/mentorship",
